@@ -9,6 +9,7 @@ services:
 
   server:
     image: kestra/kestra:latest
+    container_name: kestra
     # O modo standalone é mais leve e inclui tudo (Webserver, Executor, Scheduler)
     command: server standalone
     # Rodar como root garante permissões de escrita nos volumes do Umbrel sem dor de cabeça
@@ -20,7 +21,12 @@ services:
       # Opcional: Para configurações customizadas avançadas
       - ${APP_DATA_DIR}/confs:/app/confs
     environment:
-      # Define o nível de log
-      KESTRA_logger_level: INFO
-      # Configuração mínima para garantir que ele escute corretamente
+      KESTRA_CONFIGURATION_PATH: /app/confs/application.yml
+      # Configurações Críticas que faltavam:
+      KESTRA_REPOSITORY_TYPE: fs
+      KESTRA_QUEUE_TYPE: fs
+      KESTRA_STORAGE_TYPE: local
+      # Força a porta interna para 8080
       KESTRA_SERVER_PORT: 8080
+      # Plugins e configurações adicionais
+      KESTRA_PLUGINS: ""
