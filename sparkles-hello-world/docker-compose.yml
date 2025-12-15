@@ -1,14 +1,29 @@
 version: "3.7"
 
 services:
-
   app_proxy:
     environment:
-      # The format here is: <app-id>_<docker-service-name>_1
-      APP_HOST: sparkles-hello-world_server_1
+      APP_HOST: cronmaster_server_1
       APP_PORT: 3000
-    
+      PROXY_AUTH_ADD: "false"
+
   server:
-    image: getumbrel/community-app-store-hello-world:latest
-    user: "1000:1000"
-    init: true
+    image: ghcr.io/fccview/cronmaster:latest
+    container_name: cronmaster
+    user: "root" # Necessário para editar crontabs
+    restart: on-failure
+    # Estas duas linhas permitem que o app gerencie o sistema operacional host
+    pid: "host"
+    privileged: true
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/data
+      - ${APP_DATA_DIR}/scripts:/app/scripts
+      - ${APP_DATA_DIR}/snippets:/app/snippets
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      NODE_ENV: production
+      DOCKER: "true"
+      # Define qual usuário do UmbrelOS terá seus crons gerenciados
+      HOST_CRONTAB_USER: umbrel
+      # Onde os scripts criados pela UI serão salvos (caminho interno do container)
+      HOST_PROJECT_DIR: /app/scripts

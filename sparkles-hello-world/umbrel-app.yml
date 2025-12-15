@@ -1,29 +1,33 @@
 manifestVersion: 1
-id: sparkles-hello-world
-name: Hello World
-tagline: Replace this tagline with your app's tagline
-icon: https://svgur.com/i/mvA.svg
-category: Development
-version: "1.0.0"
-port: 4000
+id: cronmaster
+name: Cronmaster
+tagline: Gerencie seus Cron Jobs com uma UI moderna
+icon: https://github.com/fccview/cronmaster/blob/main/public/logo.png?raw=true
+category: automation
+version: "1.5.4"
+port: 3000
 description: >-
-  Add your app's description here.
+  O Cronmaster oferece uma interface limpa e responsiva para gerenciar "cron jobs" 
+  e scripts executáveis no seu servidor Umbrel.
 
+  Esqueça a sintaxe complexa do crontab. Com o Cronmaster, você pode criar, editar,
+  pausar e deletar agendamentos visualmente.
 
-  You can also add newlines!
+  ⚠️ AVISO DE SEGURANÇA: Para funcionar, este aplicativo requer acesso privilegiado 
+  ao sistema (root/host PID) para poder editar os arquivos de cron do UmbrelOS.
+  Instale apenas se você confia no desenvolvedor e neste ambiente.
 
-developer: Umbrel
-website: https://umbrel.com
-submitter: Umbrel
-submission: https://github.com/getumbrel/umbrel-hello-world-app
-repo: https://github.com/getumbrel/umbrel-hello-world-app
-support: https://github.com/getumbrel/umbrel-hello-world-app/issues
+developer: fccview
+website: https://github.com/fccview/cronmaster
+submitter: Andriel F.
+repo: https://github.com/fccview/cronmaster
+support: https://github.com/fccview/cronmaster/issues
 gallery:
-  - https://i.imgur.com/yyVG0Jb.jpeg
-  - https://i.imgur.com/yyVG0Jb.jpeg
-  - https://i.imgur.com/yyVG0Jb.jpeg
+  - https://github.com/fccview/cronmaster/blob/main/screenshots/home.png?raw=true
+  - https://github.com/fccview/cronmaster/blob/main/screenshots/new-job.png?raw=true
+  - https://github.com/fccview/cronmaster/blob/main/screenshots/logs.png?raw=true
 releaseNotes: >-
-  Add what's new in the latest version of your app here.
+  Lançamento inicial para UmbrelOS. Configurado para gerenciar o crontab do usuário 'umbrel'.
 dependencies: []
 path: ""
 defaultUsername: ""
