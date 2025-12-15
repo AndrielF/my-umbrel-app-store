@@ -5,17 +5,13 @@ tagline: Gerencie seus Cron Jobs com uma UI moderna
 icon: https://github.com/fccview/cronmaster/blob/main/public/logo.png?raw=true
 category: automation
 version: "1.5.4"
-port: 3002
+port: 3000
 description: >-
   O Cronmaster oferece uma interface limpa e responsiva para gerenciar "cron jobs" 
   e scripts executáveis no seu servidor Umbrel.
 
   Esqueça a sintaxe complexa do crontab. Com o Cronmaster, você pode criar, editar,
   pausar e deletar agendamentos visualmente.
-
-  ⚠️ AVISO DE SEGURANÇA: Para funcionar, este aplicativo requer acesso privilegiado 
-  ao sistema (root/host PID) para poder editar os arquivos de cron do UmbrelOS.
-  Instale apenas se você confia no desenvolvedor e neste ambiente.
 
 developer: fccview
 website: https://github.com/fccview/cronmaster
