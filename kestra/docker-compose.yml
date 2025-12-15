@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: server
+      APP_PORT: 8080
+      PROXY_AUTH_ADD: "false"
+
+  server:
+    image: kestra/kestra:latest
+    # O modo standalone é mais leve e inclui tudo (Webserver, Executor, Scheduler)
+    command: server standalone
+    # Rodar como root garante permissões de escrita nos volumes do Umbrel sem dor de cabeça
+    user: "root"
+    restart: on-failure
+    volumes:
+      # Persistência dos dados (Flows, Execuções, Logs)
+      - ${APP_DATA_DIR}/data:/app/storage
+      # Opcional: Para configurações customizadas avançadas
+      - ${APP_DATA_DIR}/confs:/app/confs
+    environment:
+      # Define o nível de log
+      KESTRA_logger_level: INFO
+      # Configuração mínima para garantir que ele escute corretamente
+      KESTRA_SERVER_PORT: 8080
