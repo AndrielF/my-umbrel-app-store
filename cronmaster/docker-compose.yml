@@ -9,7 +9,7 @@ services:
 
   server:
     image: ghcr.io/fccview/cronmaster:latest
-    command: yarn start -H 0.0.0.0
+    # command: yarn start -H 0.0.0.0
     user: "root" # Necessário para editar crontabs
     restart: on-failure
     # Estas duas linhas permitem que o app gerencie o sistema operacional host
