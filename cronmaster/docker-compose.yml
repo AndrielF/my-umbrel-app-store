@@ -4,12 +4,11 @@ services:
   app_proxy:
     environment:
       APP_HOST: server
-      APP_PORT: 3000
+      APP_PORT: 3002
       PROXY_AUTH_ADD: "false"
 
   server:
     image: ghcr.io/fccview/cronmaster:latest
-    container_name: cronmaster
     command: yarn start -H 0.0.0.0
     user: "root" # Necessário para editar crontabs
     restart: on-failure
