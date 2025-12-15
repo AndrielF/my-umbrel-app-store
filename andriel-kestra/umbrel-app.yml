@@ -2,7 +2,7 @@ manifestVersion: 1
 id: andriel-kestra
 name: Kestra
 tagline: Orquestração e Agendamento de Workflows
-icon: icon.svg
+icon: https://raw.githubusercontent.com/kestra-io/kestra/429e7c79453257ff1bddd91fef3d70f8ba01610f/ui/src/assets/icon.svg
 category: developer-tools
 version: "0.19.0"
 port: 8085
@@ -10,14 +10,17 @@ description: >-
   Kestra é uma plataforma de orquestração e agendamento de dados infinita,
   escalável e orientada a eventos.
 
+
   Crie e implemente pipelines de dados, automações de infraestrutura e
   processos de negócios complexos usando uma interface visual simples e arquivos YAML.
+
 
   Funcionalidades:
   - Editor de fluxo integrado com autocompletar e validação.
   - Agendamento (Cron) e gatilhos baseados em eventos (Webhooks, Arquivos).
   - Dashboards em tempo real para monitorar execuções.
   - Centenas de plugins (Python, Docker, HTTP, SQL, Slack, etc.).
+
 
   Esta instalação utiliza o modo "Standalone" com banco de dados H2 embutido,
   otimizado para desempenho em servidor único.
