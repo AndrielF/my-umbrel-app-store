@@ -1,5 +1,5 @@
 manifestVersion: 1
-id: kestra
+id: andriel-kestra
 name: Kestra
 tagline: Orquestração e Agendamento de Workflows
 icon: icon.svg
