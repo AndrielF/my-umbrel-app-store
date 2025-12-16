@@ -28,9 +28,9 @@ services:
       - /etc/crontabs:/etc/crontabs
     environment:
       NODE_ENV: production
-      # MUDANÇA VITAL: Define como 'false' para desativar o uso de 'nsenter'
-      # e forçar o app a usar o binário 'crontab' que mapeamos acima.
-      DOCKER: "false"
+      # MUDANÇA VITAL: Deixar VAZIO para ser 'falso' no Javascript.
+      # Se colocar "false" (texto), o app acha que é verdadeiro e tenta usar nsenter.
+      DOCKER: ""
       # Usamos 'root' pois é o dono garantido do processo e dos arquivos mapeados
       HOST_CRONTAB_USER: root
       HOST_PROJECT_DIR: /app/scripts
