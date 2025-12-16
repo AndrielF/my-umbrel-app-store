@@ -1,35 +1,61 @@
 version: "3.7"
 
 services:
-  app_proxy:
-    environment:
-      APP_HOST: andriel-kestra_server_1
-      APP_PORT: 8080
-      PROXY_AUTH_ADD: "false"
-
-  server:
+  kestra:
     image: kestra/kestra:latest
-    container_name: kestra
-    # O modo standalone é mais leve e inclui tudo (Webserver, Executor, Scheduler)
-    command: server standalone
-    # Rodar como root garante permissões de escrita nos volumes do Umbrel sem dor de cabeça
-    user: "root"
+    container_name: kestra_server
     restart: on-failure
-    volumes:
-      # Persistência dos dados (Flows, Execuções, Logs)
-      - ${APP_DATA_DIR}/data:/app/storage
-      # Opcional: Para configurações customizadas avançadas
-      - ${APP_DATA_DIR}/confs:/app/confs
+    stop_grace_period: 2m
+    # Root access is required for Kestra to interact with the mounted Docker socket
+    # comfortably without complex GID/UID mapping scripts found in some advanced apps.
+    user: "root"
+    command: server standalone
+    depends_on:
+      - postgres
     environment:
-      KESTRA_CONFIGURATION_PATH: /app/confs/application.yml
-      # Repositório de metadados deve ser um banco de dados. Usamos 'h2' (embutido)
-      KESTRA_REPOSITORY_TYPE: h2
-      # Fila também precisa ser compatível. Usamos 'h2' para simplificar no standalone
-      KESTRA_QUEUE_TYPE: h2
-      # Storage de arquivos grandes pode ser local ('local')
-      KESTRA_STORAGE_TYPE: local
-      # Define onde o H2 vai salvar o arquivo do banco (persistência)
-      KESTRA_DATASOURCE_URL: jdbc:h2:file:/app/storage/kestra;DB_CLOSE_ON_EXIT=FALSE
-      KESTRA_SERVER_PORT: 8080
-      # Plugins e configurações adicionais
-      KESTRA_PLUGINS: ""
+      # Configuration injected directly via YAML, similar to how Arcane handles internal configs
+      KESTRA_CONFIGURATION: |
+        datasources:
+          postgres:
+            url: jdbc:postgresql://postgres:5432/kestra
+            driverClassName: org.postgresql.Driver
+            username: kestra
+            password: kestra_password
+        kestra:
+          server:
+            basic-auth:
+              enabled: false
+          storage:
+            type: local
+            local:
+              base-path: "/app/storage"
+          queue:
+            type: postgres
+          repository:
+            type: postgres
+    ports:
+      - "${APP_PORT}:8080"
+    volumes:
+      - "${APP_DATA_DIR}/storage:/app/storage"
+      # Critical for Kestra's Docker task runner, mirroring behavior seen in Portainer/Arcane
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/kestra-wd:/tmp/kestra-wd
+    # Feature for "Power Users": Allows connecting to other apps on the Umbrel host
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: kestra_db
+    restart: on-failure
+    environment:
+      POSTGRES_DB: kestra
+      POSTGRES_USER: kestra
+      POSTGRES_PASSWORD: kestra_password
+    volumes:
+      - "${APP_DATA_DIR}/db:/var/lib/postgresql/data"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kestra"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
