@@ -3,8 +3,8 @@ id: andriel-waha
 name: WAHA
 tagline: WhatsApp HTTP API for sending and receiving messages
 icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
-category: Automation
-version: "1.0.7"
+category: DEVELOPER TOOLS
+version: "1.0.8"
 port: 3003
 description: >-
   WAHA (WhatsApp HTTP API) is a powerful solution that allows you to send and receive WhatsApp messages via HTTP API.

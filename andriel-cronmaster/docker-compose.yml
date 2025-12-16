@@ -19,7 +19,7 @@ services:
       - NODE_ENV=production
       - DOCKER=true
       - NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL=30000
-      - AUTH_PASSWORD=${APP_PASSWORD}
+      - AUTH_PASSWORD=echo
       - HOST_CRONTAB_USER=root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

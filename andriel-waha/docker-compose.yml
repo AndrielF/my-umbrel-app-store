@@ -15,12 +15,12 @@ services:
       # Dashboard credentials
       WAHA_DASHBOARD_ENABLED: "true"
       WAHA_DASHBOARD_USERNAME: "admin"
-      WAHA_DASHBOARD_PASSWORD: "${APP_PASSWORD}"
+      WAHA_DASHBOARD_PASSWORD: 2vIWwQ3UPqA92vM2xuepD39Qo0v_5iELacKrvr4QbfRvnqSJF
       # Swagger credentials
       WHATSAPP_SWAGGER_USERNAME: "admin"
-      WHATSAPP_SWAGGER_PASSWORD: "${APP_PASSWORD}"
+      WHATSAPP_SWAGGER_PASSWORD: 2vIWwQ3UPqA92vM2xuepD39Qo0v_5iELacKrvr4QbfRvnqSJF
       # API Key
-      WAHA_API_KEY: "${APP_PASSWORD}"
+      WAHA_API_KEY: 2vIWwQ3UPqA92vM2xuepD39Qo0v_5iELacKrvr4QbfRvnqSJF
     volumes:
       - ${APP_DATA_DIR}/data/sessions:/app/.sessions
       - ${APP_DATA_DIR}/data/media:/app/.media

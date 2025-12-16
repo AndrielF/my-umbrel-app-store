@@ -3,7 +3,7 @@ id: andriel-kestra
 name: Kestra
 tagline: Unified orchestration platform for data and workflows
 icon: https://avatars.githubusercontent.com/u/59033362
-category: Automation
+category: DEVELOPER TOOLS
 version: "1.0.0"
 port: 8085
 description: >-
