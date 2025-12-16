@@ -7,8 +7,8 @@ services:
       APP_PORT: 3000
 
   server:
-    image: devlikeapro/waha:latest
-    user: "1000:1000"
+    # Use ARM-compatible image for Raspberry Pi and other ARM devices
+    image: devlikeapro/waha:arm
     restart: on-failure
     environment:
       # Dashboard and Swagger credentials
