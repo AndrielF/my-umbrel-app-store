@@ -10,17 +10,9 @@ services:
     # Use ARM-compatible image for Raspberry Pi and other ARM devices
     image: devlikeapro/waha:arm
     restart: on-failure
+    user: "0:0"
     environment:
-      # Dashboard and Swagger credentials
-      WAHA_DASHBOARD_ENABLED: "true"
-      WAHA_DASHBOARD_USERNAME: "admin"
-      WAHA_DASHBOARD_PASSWORD: "admin"
-      WHATSAPP_SWAGGER_USERNAME: "admin"
-      WHATSAPP_SWAGGER_PASSWORD: "admin"
-      # API Key for authentication
-      WAHA_API_KEY: "admin"
-      # Data storage path
-      WAHA_FILES_FOLDER: "/data/files"
-      WAHA_FILES_LIFETIME: "180"
+      WAHA_API_KEY: "sha512:7fb00ac30378f6d4f8deed2b928b185d95d2e84c5ab4a1498fefa10aa1ded056a1546440a4c409dcada3e0dc51b73d9ff3badbff8e7e38e2980ad965e258ced5"
     volumes:
-      - ${APP_DATA_DIR}/data:/data
+      - ${APP_DATA_DIR}/data/sessions:/app/.sessions
+      - ${APP_DATA_DIR}/data/media:/app/.media
