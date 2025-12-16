@@ -1,1 +1,1 @@
-export APP_PASSWORD="echo"
+export APP_PASSWORD="2vIWwQ3UPqA92vM2xuepD39Qo0v_5iELacKrvr4QbfRvnqSJF"
