@@ -4,8 +4,8 @@ name: CronMaster
 tagline: Modern web UI for managing cron jobs
 icon: https://raw.githubusercontent.com/fccview/cronmaster/main/public/logo.png
 category: Automation
-version: "1.0.0"
-port: 3000
+version: "1.0.1"
+port: 3001
 description: >-
   CronMaster is a powerful, modern web interface for managing cron jobs with ease.
 
