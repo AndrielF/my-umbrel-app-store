@@ -1,40 +1,37 @@
 manifestVersion: 1
 id: andriel-waha
-name: WAHA (WhatsApp HTTP API)
+name: WAHA
 tagline: WhatsApp HTTP API server for automation and integrations
 icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
 category: developer-tools
 version: "1.0.0"
 port: 3003
-descriptions:
-  O WAHA (WhatsApp HTTP API) é a solução definitiva para integrar o WhatsApp ao seu servidor doméstico Umbrel.
+description: >-
+  WAHA (WhatsApp HTTP API) é a solução definitiva para integrar o WhatsApp aos seus projetos.
 
 
-  Ele fornece uma API RESTful fácil de usar que permite enviar e receber mensagens, gerenciar sessões e automatizar comunicações via WhatsApp.
+  Ele fornece uma API RESTful completa para enviar e receber mensagens, gerenciar sessões, 
+  contatos, grupos e muito mais. Ideal para chatbots, notificações e automações.
 
 
-  ✨ **Destaques:**
-  - **Dashboard Integrado:** Gerencie suas sessões visualmente.
-  - **API Swagger:** Documentação interativa pronta para uso.
-  - **Webhooks:** Integre com n8n, Home Assistant ou Node-RED facilmente.
-  - **Privacidade:** Todos os dados permanecem no seu Umbrel.
+  ⚠️ Credenciais Padrão:
 
+  - Usuário: admin
 
-  ⚠️ **Notas Importantes:**
-  - As credenciais padrão do Dashboard são **umbrel** / **umbrel**
-  - Ao iniciar pela primeira vez, vá ao Dashboard e escaneie o QR Code.
-  - Esta é a versão 'Core' (Gratuita).
+  - Senha: umbrel
 
-developer: devlikeapro
-website: https://waha.devlike.pro
+  - API Key: umbrel
+
+developer: DevLikeAPro
+website: https://waha.devlike.pro/
 submitter: Andriel F.
+submission: https://github.com/devlikeapro/waha
 repo: https://github.com/devlikeapro/waha
 support: https://github.com/devlikeapro/waha/issues
-gallery:
-  - https://kestra.io/og-image.png
+
 releaseNotes: >-
-  Initial Umbrel Community App release.
+  Versão inicial do WAHA para Umbrel OS.
 dependencies: []
 path: ""
-defaultUsername: ""
-defaultPassword: ""
+defaultUsername: "admin"
+defaultPassword: "umbrel"

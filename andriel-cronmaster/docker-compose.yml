@@ -20,7 +20,7 @@ services:
     # 1. Tenta rodar 'cron'.
     # 2. Se não existir, instala via apt-get (assumindo base Debian) e roda.
     # 3. Inicia o app.
-    command: sh -c "if ! command -v cron > /dev/null; then echo 'Instalando cron...'; apt-get update && apt-get install -y cron; fi; cron && npm start"
+    command: sh -c "if ! command -v cron > /dev/null; then echo 'Instalando cron...'; apt-get update && apt-get install -y cron; fi; cron && yarn start -H 0.0.0.0"
 
     volumes:
       - ${APP_DATA_DIR}/data:/data

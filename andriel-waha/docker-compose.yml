@@ -1,34 +1,31 @@
 version: "3.7"
 
 services:
-  # O Proxy garante que apenas você logado no Umbrel acesse o app
   app_proxy:
     environment:
+      # Formato: <app-id>_<service-name>_1
+      # Assumindo que o ID do app no umbrel-app.yml é 'custom-waha'
       APP_HOST: andriel-waha_server_1
       APP_PORT: 3000
-      PROXY_AUTH_ADD_NO_AUTH: "false"
 
   server:
-    # Using the Core version (Free).
-    # NOTE: On Raspberry Pi (ARM64), this image usually works fine as it is multi-arch,
-    # but strictly verify if 'devlikeapro/waha:arm' tag is needed if it fails.
     image: devlikeapro/waha:latest
+    user: "1000:1000"
     restart: on-failure
+    stop_grace_period: 1m
     environment:
-      # Sets the engine to WebJS (Puppeteer based) - Standard for Core version
-      - WHATSAPP_DEFAULT_ENGINE=WEBJS
-      # Security: Default credentials for the Dashboard.
-      # User should change these in the UI or here later.
-      - WAHA_DASHBOARD_USERNAME=umbrel
+      # Credenciais Padrão para o Umbrel (O usuário deve alterar depois ou você fixa aqui)
+      - WAHA_DASHBOARD_USERNAME=admin
       - WAHA_DASHBOARD_PASSWORD=umbrel
-      # Performance tuning for low-end devices (Pi 4)
-      - WAHA_PRINT_QR=False
+      - WHATSAPP_SWAGGER_USERNAME=admin
+      - WHATSAPP_SWAGGER_PASSWORD=umbrel
+      - WAHA_API_KEY=umbrel
+      # URL base interna
+      - WAHA_BASE_URL=http://umbrel.local:3000
+      # Configurações de performance
+      - WAHA_PRINT_QR=false
     volumes:
-      # PERSISTENCE: Mapping the internal session folder to Umbrel's data directory.
-      # WAHA stores sessions in /app/.sessions
-      - ${APP_DATA_DIR}/sessions:/app/.sessions
-      # Optional: Map screenshots or files if needed
-      - ${APP_DATA_DIR}/files:/app/.sessions/files
-    networks:
-      default:
-        ipv4_address: $APP_SERVER_IP
+      # Persistência de dados usando a variável do Umbrel
+      - ${APP_DATA_DIR}/sessions:/app/sessions
+      - ${APP_DATA_DIR}/files:/app/files
+      - ${APP_DATA_DIR}/thumbnails:/app/thumbnails
