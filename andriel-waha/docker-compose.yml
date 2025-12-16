@@ -1,18 +1,12 @@
 version: "3.7"
 
 services:
-  # Umbrel App Proxy - The Gateway for the "Sandbox"
+  # O Proxy garante que apenas você logado no Umbrel acesse o app
   app_proxy:
-    image: getumbrel/app-proxy:v1.0.0
-    restart: on-failure
-    ports:
-      # Maps the Umbrel assigned port to the internal proxy port
-      - $APP_FLASK_PORT:3000
     environment:
-      # Points to the 'server' service defined above
-      - APP_HOST=andriel-waha_server_1
-      - APP_PORT=3000
-      - PROXY_AUTH_ADD=false
+      APP_HOST: andriel-waha_server_1
+      APP_PORT: 3000
+      PROXY_AUTH_ADD_NO_AUTH: "false"
 
   server:
     # Using the Core version (Free).

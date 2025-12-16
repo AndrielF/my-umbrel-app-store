@@ -16,9 +16,11 @@ services:
     restart: on-failure
     stop_grace_period: 1m
 
-    # TRUQUE: Iniciamos o serviço de cron (crond) manualmente antes de subir o site.
-    # Como removemos o modo DOCKER=true, precisamos garantir que o relógio interno rode.
-    command: sh -c "crond -b && npm start"
+    # TRUQUE: Script de boot robusto.
+    # 1. Tenta rodar 'cron'.
+    # 2. Se não existir, instala via apt-get (assumindo base Debian) e roda.
+    # 3. Inicia o app.
+    command: sh -c "if ! command -v cron > /dev/null; then echo 'Instalando cron...'; apt-get update && apt-get install -y cron; fi; cron && npm start"
 
     volumes:
       - ${APP_DATA_DIR}/data:/data

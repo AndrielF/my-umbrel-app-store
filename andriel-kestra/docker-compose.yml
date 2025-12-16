@@ -55,17 +55,10 @@ services:
 
   # O Guardião do Tráfego
   app_proxy:
-    image: getumbrel/app-proxy:v1.0.0
-    restart: on-failure
     environment:
-      # MÁGICA DO NOME: <nome-da-pasta>_<nome-do-serviço>_1
-      # Pasta: andriel-kestra | Serviço: server
       APP_HOST: andriel-kestra_server_1
       APP_PORT: 8080
-      PROXY_AUTH_ADD: "false"
-    ports:
-      # A porta 8085 do manifesto (APP_PORT) é ligada à porta 8080 do Proxy
-      - "${APP_PORT}:8080"
+      PROXY_AUTH_ADD_NO_AUTH: "false"
     depends_on:
       server:
         condition: service_healthy
