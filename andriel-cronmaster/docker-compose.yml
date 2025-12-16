@@ -1,39 +1,28 @@
 version: "3.7"
 
 services:
-  # O Proxy garante que apenas você logado no Umbrel acesse o app
   app_proxy:
     environment:
-      APP_HOST: server
+      APP_HOST: andriel-cronmaster_server_1
       APP_PORT: 3000
-      PROXY_AUTH_ADD_NO_AUTH: "false"
+      PROXY_AUTH_ADD: "false"
 
   server:
-    image: ghcr.io/fccview/cronmaster:main
-    container_name: andriel_cronmaster_server_1
-    # Mantemos root para poder usar o docker.sock e editar o cron interno
-    user: "root"
+    image: ghcr.io/fccview/cronmaster:latest
+    platform: linux/arm64
+    user: root
     restart: on-failure
-    stop_grace_period: 1m
-
-    # TRUQUE: Script de boot robusto.
-    # 1. Tenta rodar 'cron'.
-    # 2. Se não existir, instala via apt-get (assumindo base Debian) e roda.
-    # 3. Inicia o app.
-    command: sh -c "if ! command -v cron > /dev/null; then echo 'Instalando cron...'; apt-get update && apt-get install -y cron; fi; cron && yarn start -H 0.0.0.0"
-
-    volumes:
-      - ${APP_DATA_DIR}/data:/data
-      # O Cron interno vai escrever aqui. Isso garante persistência.
-      - ${APP_DATA_DIR}/crontabs:/var/spool/cron/crontabs
-      # A chave mestra para controlar o Arcane continua aqui
-      - /var/run/docker.sock:/var/run/docker.sock
-
+    init: true
+    pid: host
+    privileged: true
     environment:
-      # --- MUDANÇAS CRÍTICAS ---
-      # Removemos DOCKER=true para ele parar de tentar usar nsenter
       - NODE_ENV=production
-      # Removemos HOST_CRONTAB_USER para ele usar o usuário atual (root do container)
-      - PORT=3000
-      # Define o fuso horário para bater com o servidor (Opcional, mas recomendado)
-      - TZ=America/Sao_Paulo
+      - DOCKER=true
+      - NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL=30000
+      - AUTH_PASSWORD=${APP_PASSWORD}
+      - HOST_CRONTAB_USER=root
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${APP_DATA_DIR}/scripts:/app/scripts
+      - ${APP_DATA_DIR}/data:/app/data
+      - ${APP_DATA_DIR}/snippets:/app/snippets

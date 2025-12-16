@@ -1,22 +1,42 @@
 manifestVersion: 1
 id: andriel-cronmaster
-name: Cronmaster
-tagline: Gerencie seus Cron Jobs com uma UI moderna
-icon: https://github.com/fccview/cronmaster/blob/main/public/logo.png?raw=true
-category: developer-tools
-version: "1.5.5"
-port: 3002
+name: CronMaster
+tagline: Modern web UI for managing cron jobs
+icon: https://raw.githubusercontent.com/fccview/cronmaster/main/public/logo.png
+category: Automation
+version: "1.0.0"
+port: 3000
 description: >-
-  O Cronmaster oferece uma interface limpa e responsiva para gerenciar "cron jobs" 
-  e scripts executáveis no seu servidor Umbrel.
+  CronMaster is a powerful, modern web interface for managing cron jobs with ease.
 
 
-  Esqueça a sintaxe complexa do crontab. Com o Cronmaster, você pode criar, editar,
-  pausar e deletar agendamentos visualmente.
+  Key features:
 
-developer: fccview
+  - View and manage all cron jobs in a clean, intuitive UI
+
+  - Create new cron jobs with preset schedules or custom expressions
+
+  - Clone, edit, and delete jobs with one click
+
+  - Job execution logging for debugging and monitoring
+
+  - Script manager for creating and organizing automation scripts
+
+  - Code snippets library for quick script creation
+
+  - System information dashboard (uptime, CPU, memory, GPU)
+
+  - REST API for programmatic access
+
+  - SSO support (OIDC) for enterprise authentication
+
+
+  Perfect for automating backups, maintenance tasks, notifications, and any scheduled operations on your Umbrel server.
+
+developer: FCCView
 website: https://github.com/fccview/cronmaster
-submitter: Andriel F.
+submitter: Andriel
+submission: https://github.com/fccview/cronmaster
 repo: https://github.com/fccview/cronmaster
 support: https://github.com/fccview/cronmaster/issues
 gallery:
@@ -24,7 +44,12 @@ gallery:
   - https://github.com/fccview/cronmaster/blob/main/screenshots/new-job.png?raw=true
   - https://github.com/fccview/cronmaster/blob/main/screenshots/logs.png?raw=true
 releaseNotes: >-
-  Lançamento inicial para UmbrelOS. Configurado para gerenciar o crontab do usuário 'umbrel'.
+  Initial release of CronMaster for Umbrel.
+
+  - Full cron job management
+  - Script editor with snippets
+  - System monitoring dashboard
+  - REST API access
 dependencies: []
 path: ""
 defaultUsername: ""
