@@ -28,7 +28,8 @@ submitter: Andriel F.
 submission: https://github.com/devlikeapro/waha
 repo: https://github.com/devlikeapro/waha
 support: https://github.com/devlikeapro/waha/issues
-
+gallery:
+  - https://kestra.io/og-image.png
 releaseNotes: >-
   Versão inicial do WAHA para Umbrel OS.
 dependencies: []

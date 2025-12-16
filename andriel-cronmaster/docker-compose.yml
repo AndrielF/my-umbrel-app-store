@@ -4,7 +4,7 @@ services:
   # O Proxy garante que apenas você logado no Umbrel acesse o app
   app_proxy:
     environment:
-      APP_HOST: andriel-cronmaster_server_1
+      APP_HOST: server
       APP_PORT: 3000
       PROXY_AUTH_ADD_NO_AUTH: "false"
 

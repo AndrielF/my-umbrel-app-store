@@ -4,7 +4,7 @@ name: Cronmaster
 tagline: Gerencie seus Cron Jobs com uma UI moderna
 icon: https://github.com/fccview/cronmaster/blob/main/public/logo.png?raw=true
 category: developer-tools
-version: "1.5.4"
+version: "1.5.5"
 port: 3002
 description: >-
   O Cronmaster oferece uma interface limpa e responsiva para gerenciar "cron jobs" 
