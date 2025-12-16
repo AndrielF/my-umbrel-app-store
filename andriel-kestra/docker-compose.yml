@@ -1,6 +1,16 @@
 version: "3.7"
 
 services:
+  # O Guardião do Tráfego
+  app_proxy:
+    environment:
+      APP_HOST: andriel-kestra_server_1
+      APP_PORT: 8080
+      PROXY_AUTH_ADD_NO_AUTH: "false"
+    depends_on:
+      server:
+        condition: service_healthy
+
   # O serviço principal DEVE se chamar 'server' para bater com o padrão gerado no APP_HOST
   server:
     image: kestra/kestra:latest
@@ -52,16 +62,6 @@ services:
       timeout: 5s
       retries: 10
       start_period: 30s
-
-  # O Guardião do Tráfego
-  app_proxy:
-    environment:
-      APP_HOST: andriel-kestra_server_1
-      APP_PORT: 8080
-      PROXY_AUTH_ADD_NO_AUTH: "false"
-    depends_on:
-      server:
-        condition: service_healthy
 
   postgres:
     image: postgres:15-alpine

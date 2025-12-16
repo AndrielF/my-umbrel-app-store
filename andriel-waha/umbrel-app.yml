@@ -1,11 +1,11 @@
-manifest:
+manifestVersion: 1
 id: andriel-waha
-name: WAHA (WhatsApp API)
-tagline: API HTTP robusta para automação de WhatsApp
+name: WAHA (WhatsApp HTTP API)
+tagline: WhatsApp HTTP API server for automation and integrations
 icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
 category: developer-tools
-version: 1
-port: 3025
+version: "1.0.0"
+port: 3003
 descriptions:
   O WAHA (WhatsApp HTTP API) é a solução definitiva para integrar o WhatsApp ao seu servidor doméstico Umbrel.
 
@@ -26,13 +26,14 @@ descriptions:
   - Esta é a versão 'Core' (Gratuita).
 
 developer: devlikeapro
-website: https://waha.devlike.pro/
+website: https://waha.devlike.pro
 submitter: Andriel F.
 repo: https://github.com/devlikeapro/waha
 support: https://github.com/devlikeapro/waha/issues
 gallery:
   - https://kestra.io/og-image.png
-path: /dashboard
+releaseNotes: >-
+  Initial Umbrel Community App release.
 dependencies: []
 path: ""
 defaultUsername: ""
