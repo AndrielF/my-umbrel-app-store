@@ -13,16 +13,14 @@ services:
     user: root
     restart: on-failure
     init: true
-    pid: host
-    privileged: true
     environment:
-      - NODE_ENV=production
-      - DOCKER=true
-      - NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL=30000
-      - AUTH_PASSWORD=echo
-      - HOST_CRONTAB_USER=root
+      NODE_ENV: production
+      DOCKER: "false"
+      NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL: "30000"
+      AUTH_PASSWORD: $APP_PASSWORD
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${APP_DATA_DIR}/scripts:/app/scripts
       - ${APP_DATA_DIR}/data:/app/data
       - ${APP_DATA_DIR}/snippets:/app/snippets
+      - /etc/crontabs:/etc/crontabs
