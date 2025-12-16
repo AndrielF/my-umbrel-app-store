@@ -1,16 +1,17 @@
 manifest:
-  version: 1
-  appVersion: 2025.x
-  id: waha
-  name: WAHA (WhatsApp API)
-  tagline: API HTTP robusta para automação de WhatsApp
-  category: automation
-  port: 3025
-  developer: devlikeapro
-  website: https://waha.devlike.pro/
-  dependencies: []
-  repo: https://github.com/devlikeapro/waha
-  support: https://github.com/devlikeapro/waha/issues
+id: andriel-waha
+name: WAHA (WhatsApp API)
+tagline: API HTTP robusta para automação de WhatsApp
+icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
+version: 1
+appVersion: 2025.x
+category: automation
+port: 3025
+developer: devlikeapro
+website: https://waha.devlike.pro/
+dependencies: []
+repo: https://github.com/devlikeapro/waha
+support: https://github.com/devlikeapro/waha/issues
 
 # Default path opens the Dashboard instead of the Swagger API docs
 path: /dashboard
@@ -32,6 +33,6 @@ descriptions:
     - Ao iniciar pela primeira vez, vá ao Dashboard e escaneie o QR Code.
     - Esta é a versão 'Core' (Gratuita).
 
-  # Instructions shown before installation
-  submitter: UmbrelOS
-  submission: https://github.com/getumbrel/umbrel-community-app-store
+# Instructions shown before installation
+submitter: UmbrelOS
+submission: https://github.com/getumbrel/umbrel-community-app-store
