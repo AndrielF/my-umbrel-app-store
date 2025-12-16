@@ -13,6 +13,7 @@ services:
     user: root
     restart: on-failure
     init: true
+    entrypoint: ["/bin/sh", "-c", "crond -b -l 2 && exec yarn start"]
     environment:
       NODE_ENV: production
       DOCKER: "false"
@@ -23,4 +24,3 @@ services:
       - ${APP_DATA_DIR}/scripts:/app/scripts
       - ${APP_DATA_DIR}/data:/app/data
       - ${APP_DATA_DIR}/snippets:/app/snippets
-      - /etc/crontabs:/etc/crontabs
