@@ -9,21 +9,28 @@ services:
 
   server:
     image: ghcr.io/fccview/cronmaster:latest
+    # Comando vital para o Next.js aceitar conexões do Proxy
     command: yarn start -H 0.0.0.0
-    user: "root" # Necessário para editar crontabs
+    user: "root"
     restart: on-failure
-    # Estas duas linhas permitem que o app gerencie o sistema operacional host
-    pid: "host"
     privileged: true
     volumes:
       - ${APP_DATA_DIR}/data:/app/data
       - ${APP_DATA_DIR}/scripts:/app/scripts
       - ${APP_DATA_DIR}/snippets:/app/snippets
       - /var/run/docker.sock:/var/run/docker.sock
+      # --- BYPASS DE SEGURANÇA (CRÍTICO) ---
+      # Traz o executável do Host para dentro do Container
+      - /usr/bin/crontab:/usr/bin/crontab
+      # Traz a pasta de armazenamento dos crons do Alpine (Umbrel)
+      - /var/spool/cron/crontabs:/var/spool/cron/crontabs
+      # Traz configurações adicionais
+      - /etc/crontabs:/etc/crontabs
     environment:
       NODE_ENV: production
-      DOCKER: "true"
-      # Define qual usuário do UmbrelOS terá seus crons gerenciados
-      HOST_CRONTAB_USER: umbrel
-      # Onde os scripts criados pela UI serão salvos (caminho interno do container)
+      # MUDANÇA VITAL: Define como 'false' para desativar o uso de 'nsenter'
+      # e forçar o app a usar o binário 'crontab' que mapeamos acima.
+      DOCKER: "false"
+      # Usamos 'root' pois é o dono garantido do processo e dos arquivos mapeados
+      HOST_CRONTAB_USER: root
       HOST_PROJECT_DIR: /app/scripts
