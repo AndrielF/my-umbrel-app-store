@@ -4,7 +4,7 @@ name: ngrok
 tagline: Secure tunnels to expose local services to the internet
 icon: https://cdn.brandfetch.io/id3QqXlVah/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1763840061267
 category: Networking
-version: "1.0.0"
+version: "1.0.1"
 port: 4040
 description: >-
   ngrok is a globally distributed reverse proxy that secures, protects and accelerates your applications and network services.

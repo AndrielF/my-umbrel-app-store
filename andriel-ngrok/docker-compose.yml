@@ -20,6 +20,3 @@ services:
       NGROK_AUTHTOKEN: "${APP_NGROK_AUTHTOKEN}"
     volumes:
       - ${APP_DATA_DIR}/ngrok.yml:/etc/ngrok.yml:ro
-    ports:
-      # Expose additional ports for tunnels if needed
-      # - "8080:8080"
