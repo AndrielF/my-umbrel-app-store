@@ -5,19 +5,22 @@ services:
     image: getumbrel/app-proxy:v1.0.0
     restart: on-failure
     environment:
-      # Padrão de nomenclatura do Umbrel: <app-id>_<service-name>_1
-      # O app-id é definido no umbrel-app.yml (andriel-kestra)
-      # O service-name é definido acima (server)
+      # MÁGICA DO NOME: <nome-da-pasta>_<nome-do-serviço>_1
+      # Pasta: andriel-kestra | Serviço: server
       APP_HOST: andriel-kestra_server_1
       APP_PORT: 8080
       PROXY_AUTH_ADD: "false"
     ports:
+      # A porta 8085 do manifesto (APP_PORT) é ligada à porta 8080 do Proxy
       - "${APP_PORT}:8080"
     depends_on:
-      - server
+      server:
+        condition: service_healthy
 
+  # O serviço principal DEVE se chamar 'server' para bater com o padrão gerado no APP_HOST
   server:
     image: kestra/kestra:latest
+    # Removemos container_name fixo para o Docker gerar o nome baseado na pasta (andriel-kestra_server_1)
     restart: on-failure
     stop_grace_period: 2m
     # Root access is required for Kestra to interact with the mounted Docker socket
@@ -47,7 +50,7 @@ services:
             type: postgres
           repository:
             type: postgres
-    # Expõe a porta 8080 apenas para a rede interna (para o app_proxy ver)
+    # Expose apenas para o Proxy ver (Segurança)
     expose:
       - "8080"
     volumes:
@@ -58,6 +61,15 @@ services:
     # Feature for "Power Users": Allows connecting to other apps on the Umbrel host
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # Healthcheck é CRÍTICO para o App Proxy não morrer antes do Kestra subir
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # O Guardião do Tráfego
 
   postgres:
     image: postgres:15-alpine

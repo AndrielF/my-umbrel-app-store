@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  # Umbrel App Proxy - The Gateway for the "Sandbox"
+  app_proxy:
+    image: getumbrel/app-proxy:v1.0.0
+    restart: on-failure
+    ports:
+      # Maps the Umbrel assigned port to the internal proxy port
+      - $APP_FLASK_PORT:3000
+    environment:
+      # Points to the 'server' service defined above
+      - APP_HOST=andriel-waha_server_1
+      - APP_PORT=3000
+      - PROXY_AUTH_ADD=false
+
+  server:
+    # Using the Core version (Free).
+    # NOTE: On Raspberry Pi (ARM64), this image usually works fine as it is multi-arch,
+    # but strictly verify if 'devlikeapro/waha:arm' tag is needed if it fails.
+    image: devlikeapro/waha:latest
+    restart: on-failure
+    environment:
+      # Sets the engine to WebJS (Puppeteer based) - Standard for Core version
+      - WHATSAPP_DEFAULT_ENGINE=WEBJS
+      # Security: Default credentials for the Dashboard.
+      # User should change these in the UI or here later.
+      - WAHA_DASHBOARD_USERNAME=umbrel
+      - WAHA_DASHBOARD_PASSWORD=umbrel
+      # Performance tuning for low-end devices (Pi 4)
+      - WAHA_PRINT_QR=False
+    volumes:
+      # PERSISTENCE: Mapping the internal session folder to Umbrel's data directory.
+      # WAHA stores sessions in /app/.sessions
+      - ${APP_DATA_DIR}/sessions:/app/.sessions
+      # Optional: Map screenshots or files if needed
+      - ${APP_DATA_DIR}/files:/app/.sessions/files
+    networks:
+      default:
+        ipv4_address: $APP_SERVER_IP

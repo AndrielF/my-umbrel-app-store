@@ -10,29 +10,28 @@ services:
 
   server:
     image: ghcr.io/fccview/cronmaster:main
-    container_name: andriel-cronmaster_server_1
-    # 'root' é obrigatório para acessar o docker.sock e o cron interno
+    container_name: andriel_cronmaster_server_1
+    # Mantemos root para poder usar o docker.sock e editar o cron interno
     user: "root"
     restart: on-failure
     stop_grace_period: 1m
+
+    # TRUQUE: Iniciamos o serviço de cron (crond) manualmente antes de subir o site.
+    # Como removemos o modo DOCKER=true, precisamos garantir que o relógio interno rode.
+    command: sh -c "crond -b && npm start"
+
     volumes:
-      # 1. Dados da aplicação (scripts, configurações)
       - ${APP_DATA_DIR}/data:/data
-
-      # 2. ISOLAMENTO DO CRON:
-      # Mapeamos uma pasta do app para ser a pasta de crontabs do container.
-      # Assim, ele salva os agendamentos no disco do Umbrel, mas NÃO toca no sistema operacional.
+      # O Cron interno vai escrever aqui. Isso garante persistência.
       - ${APP_DATA_DIR}/crontabs:/var/spool/cron/crontabs
-
-      # 3. CONTROLE DO DOCKER (Para conversar com o Arcane):
-      # Permite rodar comandos como "docker start arcane" ou "docker restart plex"
+      # A chave mestra para controlar o Arcane continua aqui
       - /var/run/docker.sock:/var/run/docker.sock
 
     environment:
-      - DOCKER=true
+      # --- MUDANÇAS CRÍTICAS ---
+      # Removemos DOCKER=true para ele parar de tentar usar nsenter
       - NODE_ENV=production
-      # Define que o usuário interno do cron é root (necessário para executar docker CLI)
-      - HOST_CRONTAB_USER=root
+      # Removemos HOST_CRONTAB_USER para ele usar o usuário atual (root do container)
       - PORT=3000
       # Define o fuso horário para bater com o servidor (Opcional, mas recomendado)
       - TZ=America/Sao_Paulo
