@@ -21,7 +21,7 @@ descriptions:
 
 
   ⚠️ **Notas Importantes:**
-  - As credenciais padrão do Dashboard são: **umbrel** / **umbrel**
+  - As credenciais padrão do Dashboard são **umbrel** / **umbrel**
   - Ao iniciar pela primeira vez, vá ao Dashboard e escaneie o QR Code.
   - Esta é a versão 'Core' (Gratuita).
 
@@ -31,7 +31,7 @@ submitter: Andriel F.
 repo: https://github.com/devlikeapro/waha
 support: https://github.com/devlikeapro/waha/issues
 gallery:
-  -
+  - https://kestra.io/og-image.png
 path: /dashboard
 dependencies: []
 path: ""
