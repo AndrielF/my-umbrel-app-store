@@ -22,11 +22,14 @@ services:
       - ${APP_DATA_DIR}/confs:/app/confs
     environment:
       KESTRA_CONFIGURATION_PATH: /app/confs/application.yml
-      # Configurações Críticas que faltavam:
-      KESTRA_REPOSITORY_TYPE: fs
-      KESTRA_QUEUE_TYPE: fs
+      # Repositório de metadados deve ser um banco de dados. Usamos 'h2' (embutido)
+      KESTRA_REPOSITORY_TYPE: h2
+      # Fila também precisa ser compatível. Usamos 'h2' para simplificar no standalone
+      KESTRA_QUEUE_TYPE: h2
+      # Storage de arquivos grandes pode ser local ('local')
       KESTRA_STORAGE_TYPE: local
-      # Força a porta interna para 8080
+      # Define onde o H2 vai salvar o arquivo do banco (persistência)
+      KESTRA_DATASOURCE_URL: jdbc:h2:file:/app/storage/kestra;DB_CLOSE_ON_EXIT=FALSE
       KESTRA_SERVER_PORT: 8080
       # Plugins e configurações adicionais
       KESTRA_PLUGINS: ""
