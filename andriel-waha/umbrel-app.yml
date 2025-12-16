@@ -3,7 +3,7 @@ id: andriel-waha
 name: WAHA (WhatsApp API)
 tagline: API HTTP robusta para automação de WhatsApp
 icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
-category: automation
+category: developer-tools
 version: 1
 port: 3025
 descriptions:
