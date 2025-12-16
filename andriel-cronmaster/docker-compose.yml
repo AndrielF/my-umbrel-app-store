@@ -1,36 +1,38 @@
 version: "3.7"
 
 services:
+  # O Proxy garante que apenas você logado no Umbrel acesse o app
   app_proxy:
     environment:
       APP_HOST: andriel-cronmaster_server_1
       APP_PORT: 3000
-      PROXY_AUTH_ADD: "false"
+      PROXY_AUTH_ADD_NO_AUTH: "false"
 
   server:
-    image: ghcr.io/fccview/cronmaster:latest
-    # Comando vital para o Next.js aceitar conexões do Proxy
-    command: yarn start -H 0.0.0.0
+    image: ghcr.io/fccview/cronmaster:main
+    container_name: andriel-cronmaster_server_1
+    # 'root' é obrigatório para acessar o docker.sock e o cron interno
     user: "root"
     restart: on-failure
-    privileged: true
+    stop_grace_period: 1m
     volumes:
-      - ${APP_DATA_DIR}/data:/app/data
-      - ${APP_DATA_DIR}/scripts:/app/scripts
-      - ${APP_DATA_DIR}/snippets:/app/snippets
+      # 1. Dados da aplicação (scripts, configurações)
+      - ${APP_DATA_DIR}/data:/data
+
+      # 2. ISOLAMENTO DO CRON:
+      # Mapeamos uma pasta do app para ser a pasta de crontabs do container.
+      # Assim, ele salva os agendamentos no disco do Umbrel, mas NÃO toca no sistema operacional.
+      - ${APP_DATA_DIR}/crontabs:/var/spool/cron/crontabs
+
+      # 3. CONTROLE DO DOCKER (Para conversar com o Arcane):
+      # Permite rodar comandos como "docker start arcane" ou "docker restart plex"
       - /var/run/docker.sock:/var/run/docker.sock
-      # --- BYPASS DE SEGURANÇA (CRÍTICO) ---
-      # Traz o executável do Host para dentro do Container
-      - /usr/bin/crontab:/usr/bin/crontab
-      # Traz a pasta de armazenamento dos crons do Alpine (Umbrel)
-      - /var/spool/cron/crontabs:/var/spool/cron/crontabs
-      # Traz configurações adicionais
-      - /etc/crontabs:/etc/crontabs
+
     environment:
-      NODE_ENV: production
-      # MUDANÇA VITAL: Deixar VAZIO para ser 'falso' no Javascript.
-      # Se colocar "false" (texto), o app acha que é verdadeiro e tenta usar nsenter.
-      DOCKER: ""
-      # Usamos 'root' pois é o dono garantido do processo e dos arquivos mapeados
-      HOST_CRONTAB_USER: root
-      HOST_PROJECT_DIR: /app/scripts
+      - DOCKER=true
+      - NODE_ENV=production
+      # Define que o usuário interno do cron é root (necessário para executar docker CLI)
+      - HOST_CRONTAB_USER=root
+      - PORT=3000
+      # Define o fuso horário para bater com o servidor (Opcional, mas recomendado)
+      - TZ=America/Sao_Paulo
