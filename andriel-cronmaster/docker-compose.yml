@@ -13,14 +13,18 @@ services:
     user: root
     restart: on-failure
     init: true
-    entrypoint: ["/bin/sh", "-c", "crond -b -l 2 && exec yarn start"]
+    entrypoint:
+      [
+        "/bin/sh",
+        "-c",
+        "apt-get update && apt-get install -y cron && service cron start && exec yarn start",
+      ]
     environment:
       NODE_ENV: production
       DOCKER: "false"
       NEXT_PUBLIC_CLOCK_UPDATE_INTERVAL: "30000"
       AUTH_PASSWORD: $APP_PASSWORD
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - ${APP_DATA_DIR}/scripts:/app/scripts
       - ${APP_DATA_DIR}/data:/app/data
       - ${APP_DATA_DIR}/snippets:/app/snippets

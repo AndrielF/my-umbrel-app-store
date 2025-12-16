@@ -4,12 +4,9 @@ name: CronMaster
 tagline: Modern web UI for managing cron jobs
 icon: https://raw.githubusercontent.com/fccview/cronmaster/main/public/logo.png
 category: DEVELOPER TOOLS
-version: "1.0.5"
+version: "1.0.6"
 port: 3001
 description: >-
-  ⚠️ AVISO: Este app NÃO funciona no Umbrel porque requer acesso privilegiado ao host (pid: host, privileged: true) que não é suportado.
-
-
   CronMaster is a powerful, modern web interface for managing cron jobs with ease.
 
 
@@ -32,6 +29,9 @@ description: >-
   - REST API for programmatic access
 
   - SSO support (OIDC) for enterprise authentication
+
+
+  Perfect for automating backups, maintenance tasks, notifications, and any scheduled operations on your Umbrel server.
 
 developer: FCCView
 website: https://github.com/fccview/cronmaster
