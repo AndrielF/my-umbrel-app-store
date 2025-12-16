@@ -14,11 +14,11 @@ services:
       # Dashboard and Swagger credentials
       WAHA_DASHBOARD_ENABLED: "true"
       WAHA_DASHBOARD_USERNAME: "admin"
-      WAHA_DASHBOARD_PASSWORD: "${APP_PASSWORD}"
+      WAHA_DASHBOARD_PASSWORD: "admin"
       WHATSAPP_SWAGGER_USERNAME: "admin"
-      WHATSAPP_SWAGGER_PASSWORD: "${APP_PASSWORD}"
+      WHATSAPP_SWAGGER_PASSWORD: "admin"
       # API Key for authentication
-      WAHA_API_KEY: "${APP_PASSWORD}"
+      WAHA_API_KEY: "admin"
       # Data storage path
       WAHA_FILES_FOLDER: "/data/files"
       WAHA_FILES_LIFETIME: "180"

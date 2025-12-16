@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: andriel-kestra_server_1
+      APP_PORT: 8080
+
+  server:
+    image: kestra/kestra:latest
+    user: root
+    restart: on-failure
+    command: server local
+    environment:
+      KESTRA_CONFIGURATION: |
+        kestra:
+          repository:
+            type: local
+          storage:
+            type: local
+            local:
+              base-path: /app/storage
+          queue:
+            type: database
+          anonymous-usage-report:
+            enabled: false
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/storage
+      - ${APP_DATA_DIR}/flows:/app/flows
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -1,0 +1,51 @@
+manifestVersion: 1
+id: andriel-kestra
+name: Kestra
+tagline: Unified orchestration platform for data and workflows
+icon: https://avatars.githubusercontent.com/u/59033362
+category: Automation
+version: "1.0.0"
+port: 8085
+description: >-
+  Kestra is a powerful, open-source orchestration platform that brings Infrastructure as Code best practices to all your workflows.
+
+
+  Key features:
+
+  - Build, run, schedule, and monitor complex pipelines
+
+  - Declarative YAML-based workflow definitions
+
+  - 500+ plugins for databases, cloud services, APIs, and more
+
+  - Real-time monitoring and observability
+
+  - Version control and Git integration
+
+  - Built-in code editor with live validation
+
+  - Parallel task execution and error handling
+
+  - Event-driven and scheduled triggers
+
+
+  Perfect for data engineers, DevOps teams, and anyone who needs to automate complex workflows. Create your first "Hello World" flow in minutes!
+
+developer: Kestra
+website: https://kestra.io
+submitter: Andriel
+submission: https://github.com/kestra-io/kestra
+repo: https://github.com/kestra-io/kestra
+support: https://github.com/kestra-io/kestra/issues
+gallery:
+  - https://kestra.io/og-image.png
+releaseNotes: >-
+  Initial release of Kestra for Umbrel.
+
+  - Full workflow orchestration platform
+  - Built-in UI for flow management
+  - Docker-in-Docker support for task execution
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
