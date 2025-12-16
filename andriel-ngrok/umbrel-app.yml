@@ -1,0 +1,58 @@
+manifestVersion: 1
+id: andriel-ngrok
+name: ngrok
+tagline: Secure tunnels to expose local services to the internet
+icon: https://cdn.brandfetch.io/id3QqXlVah/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1763840061267
+category: Networking
+version: "1.0.0"
+port: 4040
+description: >-
+  ngrok is a globally distributed reverse proxy that secures, protects and accelerates your applications and network services.
+
+
+  With ngrok on your Umbrel, you can:
+
+  - Expose local services to the internet securely
+
+  - Get HTTPS URLs for your local services
+
+  - Inspect and replay HTTP traffic in real-time
+
+  - Create webhooks for development and testing
+
+  - Share access to services running on your Umbrel
+
+
+  Setup instructions:
+
+  1. Create a free account at https://ngrok.com
+
+  2. Get your authtoken from https://dashboard.ngrok.com/get-started/your-authtoken
+
+  3. Set your authtoken in the exports.sh file
+
+  4. Configure your tunnels in the ngrok.yml file located in the app data directory
+
+  5. Restart the app to apply changes
+
+
+  The web interface shows all active tunnels, request logs, and allows you to inspect HTTP traffic in real-time.
+
+developer: ngrok Inc.
+website: https://ngrok.com
+submitter: Andriel
+submission: https://github.com/ngrok/ngrok
+repo: https://github.com/ngrok/ngrok
+support: https://ngrok.com/docs
+gallery:
+  - https://ngrok.com/static/img/ngrok-black.svg
+releaseNotes: >-
+  Initial release of ngrok for Umbrel.
+
+  - Web interface for tunnel management
+  - Real-time request inspection
+  - HTTPS tunnel support
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
