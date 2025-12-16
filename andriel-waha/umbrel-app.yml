@@ -4,7 +4,7 @@ name: WAHA
 tagline: WhatsApp HTTP API for sending and receiving messages
 icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
 category: DEVELOPER TOOLS
-version: "1.0.8"
+version: "1.0.9"
 port: 3003
 description: >-
   WAHA (WhatsApp HTTP API) is a powerful solution that allows you to send and receive WhatsApp messages via HTTP API.
@@ -46,4 +46,4 @@ releaseNotes: >-
 dependencies: []
 path: "/dashboard"
 defaultUsername: "admin"
-defaultPassword: "2vIWwQ3UPqA92vM2xuepD39Qo0v_5iELacKrvr4QbfRvnqSJF"
+defaultPassword: "67d7204d98254a94942584c1f5ab4bd1"

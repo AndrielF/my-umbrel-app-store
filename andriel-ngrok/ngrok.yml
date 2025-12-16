@@ -1,0 +1,32 @@
+# ngrok configuration file
+# Documentation: https://ngrok.com/docs/agent/config/
+
+version: 2
+
+# ============================================
+# COMO EXPOR APPS DO UMBREL
+# ============================================
+# No Umbrel, cada app tem um nome de container no formato:
+#   <app-id>_<service-name>_1
+#
+# Exemplos de nomes de containers:
+#   - andriel-waha_server_1 (WAHA na porta 3000)
+#   - andriel-cronmaster_server_1 (CronMaster na porta 3000)
+#   - andriel-kestra_server_1 (Kestra na porta 8080)
+#
+# Para descobrir o nome exato do container, rode no terminal do Umbrel:
+#   docker ps --format "{{.Names}}"
+# ============================================
+
+# Descomente e configure seus túneis abaixo:
+# tunnels:
+#   waha:
+#     proto: http
+#     addr: andriel-waha_server_1:3000
+
+# Web interface settings (não altere)
+web_addr: 0.0.0.0:4040
+
+# Logging
+log_level: info
+log_format: json

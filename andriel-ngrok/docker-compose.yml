@@ -5,18 +5,14 @@ services:
     environment:
       APP_HOST: andriel-ngrok_server_1
       APP_PORT: 4040
-      # Disable auth for API endpoints used by ngrok web interface
-      PROXY_AUTH_WHITELIST: "/api/*"
+      PROXY_AUTH_ADD: "false"
 
   server:
     image: ngrok/ngrok:latest
     restart: on-failure
     command:
-      - "start"
-      - "--all"
-      - "--config"
-      - "/etc/ngrok.yml"
+      - "http"
+      - "http://andriel-waha_server_1:3000"
+      - "--log=stdout"
     environment:
-      NGROK_AUTHTOKEN: "${APP_NGROK_AUTHTOKEN}"
-    volumes:
-      - ${APP_DATA_DIR}/ngrok.yml:/etc/ngrok.yml:ro
+      NGROK_AUTHTOKEN: $APP_NGROK_AUTHTOKEN
