@@ -17,7 +17,7 @@ services:
       [
         "/bin/sh",
         "-c",
-        "apt-get update && apt-get install -y cron && service cron start && exec yarn start",
+        "rm -f /.dockerenv && apt-get update && apt-get install -y cron && service cron start && exec yarn start",
       ]
     environment:
       NODE_ENV: production
