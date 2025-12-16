@@ -3,8 +3,6 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      # Formato: <app-id>_<service-name>_1
-      # Assumindo que o ID do app no umbrel-app.yml é 'custom-waha'
       APP_HOST: andriel-waha_server_1
       APP_PORT: 3000
 
@@ -12,20 +10,17 @@ services:
     image: devlikeapro/waha:latest
     user: "1000:1000"
     restart: on-failure
-    stop_grace_period: 1m
     environment:
-      # Credenciais Padrão para o Umbrel (O usuário deve alterar depois ou você fixa aqui)
-      - WAHA_DASHBOARD_USERNAME=admin
-      - WAHA_DASHBOARD_PASSWORD=umbrel
-      - WHATSAPP_SWAGGER_USERNAME=admin
-      - WHATSAPP_SWAGGER_PASSWORD=umbrel
-      - WAHA_API_KEY=umbrel
-      # URL base interna
-      - WAHA_BASE_URL=http://umbrel.local:3000
-      # Configurações de performance
-      - WAHA_PRINT_QR=false
+      # Dashboard and Swagger credentials
+      WAHA_DASHBOARD_ENABLED: "true"
+      WAHA_DASHBOARD_USERNAME: "admin"
+      WAHA_DASHBOARD_PASSWORD: "${APP_PASSWORD}"
+      WHATSAPP_SWAGGER_USERNAME: "admin"
+      WHATSAPP_SWAGGER_PASSWORD: "${APP_PASSWORD}"
+      # API Key for authentication
+      WAHA_API_KEY: "${APP_PASSWORD}"
+      # Data storage path
+      WAHA_FILES_FOLDER: "/data/files"
+      WAHA_FILES_LIFETIME: "180"
     volumes:
-      # Persistência de dados usando a variável do Umbrel
-      - ${APP_DATA_DIR}/sessions:/app/sessions
-      - ${APP_DATA_DIR}/files:/app/files
-      - ${APP_DATA_DIR}/thumbnails:/app/thumbnails
+      - ${APP_DATA_DIR}/data:/data

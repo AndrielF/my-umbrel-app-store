@@ -1,38 +1,50 @@
 manifestVersion: 1
 id: andriel-waha
 name: WAHA
-tagline: WhatsApp HTTP API server for automation and integrations
-icon: https://github.com/devlikeapro/waha/blob/core/logo.png?raw=true
-category: developer-tools
+tagline: WhatsApp HTTP API for sending and receiving messages
+icon: https://raw.githubusercontent.com/devlikeapro/waha/core/docs/site/static/img/logo.png
+category: Automation
 version: "1.0.0"
-port: 3003
+port: 3000
 description: >-
-  WAHA (WhatsApp HTTP API) é a solução definitiva para integrar o WhatsApp aos seus projetos.
+  WAHA (WhatsApp HTTP API) is a powerful solution that allows you to send and receive WhatsApp messages via HTTP API.
 
 
-  Ele fornece uma API RESTful completa para enviar e receber mensagens, gerenciar sessões, 
-  contatos, grupos e muito mais. Ideal para chatbots, notificações e automações.
+  Key features:
+
+  - Send and receive text messages, images, videos, documents, and more
+
+  - Manage multiple WhatsApp sessions
+
+  - Built-in Dashboard for easy session management
+
+  - Swagger UI for API documentation and testing
+
+  - Webhook support for real-time message notifications
+
+  - No browser required - runs headlessly
+
+  - Perfect for automation, chatbots, and integrations
 
 
-  ⚠️ Credenciais Padrão:
+  To get started, open the app and log in with your credentials. Then scan the QR code with your WhatsApp mobile app to link your account.
 
-  - Usuário: admin
-
-  - Senha: umbrel
-
-  - API Key: umbrel
-
-developer: DevLikeAPro
-website: https://waha.devlike.pro/
-submitter: Andriel F.
+developer: WAHA (devlikeapro)
+website: https://waha.devlike.pro
+submitter: Andriel
 submission: https://github.com/devlikeapro/waha
 repo: https://github.com/devlikeapro/waha
 support: https://github.com/devlikeapro/waha/issues
 gallery:
-  - https://kestra.io/og-image.png
+  - https://raw.githubusercontent.com/devlikeapro/waha/core/docs/site/static/img/waha-dashboard.png
+  - https://raw.githubusercontent.com/devlikeapro/waha/core/docs/site/static/img/waha-swagger.png
 releaseNotes: >-
-  Versão inicial do WAHA para Umbrel OS.
+  Initial release of WAHA for Umbrel.
+
+  - WhatsApp HTTP API integration
+  - Dashboard for session management
+  - Swagger UI for API testing
 dependencies: []
 path: ""
 defaultUsername: "admin"
-defaultPassword: "umbrel"
+defaultPassword: ""
