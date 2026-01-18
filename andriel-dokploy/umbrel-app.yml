@@ -4,7 +4,7 @@ name: Dokploy
 tagline: A seamless platform for effortless deployments
 icon: https://raw.githubusercontent.com/dennysubke/dennys-umbrel-app-gallery/main/denny-dokploy/logo.png
 category: In Progress
-version: "0.25.6"
+version: "0.26.5"
 port: 8528
 description: >-
   🐳 Dokploy is an advanced deployment and management platform designed to make the entire lifecycle of web applications simple, reliable, and efficient. It brings together all essential tools for deploying and managing applications in one intuitive interface, allowing developers to focus on building rather than configuring. With Dokploy, the process of launching, updating, and maintaining applications becomes a seamless experience that requires minimal manual intervention.
