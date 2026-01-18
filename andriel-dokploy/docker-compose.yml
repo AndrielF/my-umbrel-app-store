@@ -13,6 +13,7 @@ services:
       DATABASE_URL: postgresql://dokploy:supersecurepass@postgres:5432/dokploy
       REDIS_HOST: redis
       RELEASE_TAG: latest
+      TZ: America/Sao_Paulo
     depends_on:
       - postgres
       - redis
@@ -29,6 +30,7 @@ services:
       POSTGRES_USER: dokploy
       POSTGRES_PASSWORD: supersecurepass
       POSTGRES_DB: dokploy
+      TZ: America/Sao_Paulo
     volumes:
       - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data
     restart: on-failure
